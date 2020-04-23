@@ -1,5 +1,5 @@
 import GuestBookModel from "./GuestBookModel";
 
-export interface GuestBookStore {
+export default interface GuestBookStore {
   guestbook: GuestBookModel;
 }
