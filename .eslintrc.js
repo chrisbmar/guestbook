@@ -28,6 +28,8 @@ module.exports = {
     "import/no-named-as-default": 0,
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-filename-extension": 0,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     // Fixes the issue with missing file extensions. https://github.com/benmosher/eslint-plugin-import/pull/1637
     "import/extensions": [
       "error",
