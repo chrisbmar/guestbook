@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "name": "Chris",
+      "content": "The minimum content has to be at least 10 characters long.",
+      "submitted": "4/24/2020",
+      "id": 1
+    },
+    {
+      "name": "David",
+      "content": "Testing it out",
+      "submitted": "4/24/2020",
+      "id": 2
+    },
+    {
+      "name": "Laura",
+      "content": "Entries are displayed in reverse order on the client side",
+      "submitted": "4/24/2020",
+      "id": 3
+    }
+  ]
+}

@@ -16,7 +16,6 @@ export const App: React.FC = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Button color="inherit">MENU</Button>
           <Button component={Link} to="/" color="inherit">
             Home
           </Button>

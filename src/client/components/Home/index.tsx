@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { GuestBookEntryForm } from "../GuestBookEntryForm";
-import { useStoreState } from "../../hooks/index";
+import { useStoreState, useStoreActions } from "../../hooks/index";
 import useStyles from "./styles";
 
 export const Home: React.FC = () => {
   const classes = useStyles();
-  const entries = useStoreState((state) => state.guestbook.entries);
+  const entries = useStoreState((state) => state.guestbook.reverseEntries);
+  const getEntries = useStoreActions((state) => state.guestbook.getEntries);
+
+  useEffect(() => {
+    getEntries();
+  }, []);
 
   return (
     <div>
@@ -16,9 +21,7 @@ export const Home: React.FC = () => {
           <CardContent>
             <Typography variant="h2">{entry.name}</Typography>
             <Typography variant="body1">{entry.content}</Typography>
-            <Typography variant="caption">
-              {entry.submitted.toLocaleDateString()}
-            </Typography>
+            <Typography variant="caption">{entry.submitted}</Typography>
           </CardContent>
         </Card>
       ))}
