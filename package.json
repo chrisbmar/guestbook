@@ -17,6 +17,7 @@
     "easy-peasy": "^3.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^5.5.3",
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
