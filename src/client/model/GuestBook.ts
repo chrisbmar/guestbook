@@ -1,3 +1,5 @@
+import { Action, action } from "easy-peasy";
+
 // Single guest book entry
 export interface GuestBookEntry {
   name: string;
@@ -8,6 +10,7 @@ export interface GuestBookEntry {
 // Array of guest book entries
 export interface GuestBookModel {
   entries: GuestBookEntry[];
+  addEntry: Action<GuestBookModel, GuestBookEntry>;
 }
 
 // initial state
@@ -19,6 +22,9 @@ const guestBookModel: GuestBookModel = {
       submitted: new Date(),
     },
   ],
+  addEntry: action((state, payload) => {
+    state.entries.push(payload);
+  }),
 };
 
 export default guestBookModel;
