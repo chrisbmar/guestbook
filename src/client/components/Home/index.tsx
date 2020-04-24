@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
+import { GuestBookEntryForm } from "../GuestBookEntryForm";
 import { useStoreState } from "../../hooks/index";
 
 export const Home: React.FC = () => {
@@ -7,6 +8,7 @@ export const Home: React.FC = () => {
 
   return (
     <div>
+      <GuestBookEntryForm />
       {entries.map((entry) => (
         <Card key={entry.content}>
           <CardContent>

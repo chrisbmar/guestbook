@@ -5,9 +5,9 @@ import { Switch, Route, Redirect, Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 import { Home } from "../Home/index";
 import { About } from "../About/index";
-
 import useStyles from "./styles";
 
 export const App: React.FC = () => {
@@ -26,11 +26,13 @@ export const App: React.FC = () => {
         </Toolbar>
       </AppBar>
 
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Redirect to="/" />
-      </Switch>
+      <Container maxWidth="sm">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Redirect to="/" />
+        </Switch>
+      </Container>
     </div>
   );
 };
