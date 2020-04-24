@@ -4,7 +4,7 @@ import { Action, action } from "easy-peasy";
 export interface GuestBookEntry {
   name: string;
   content: string;
-  submitted?: Date;
+  submitted: Date;
 }
 
 // Array of guest book entries
@@ -23,7 +23,7 @@ const guestBookModel: GuestBookModel = {
     },
   ],
   addEntry: action((state, payload) => {
-    state.entries.push(payload);
+    state.entries.unshift(payload);
   }),
 };
 

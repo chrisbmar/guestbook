@@ -6,9 +6,11 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import useStyles from "./styles";
 import { GuestBookEntry } from "../../model/GuestBook";
+import { useStoreActions } from "../../hooks/index";
 
 export const GuestBookEntryForm: React.FC = () => {
   const classes = useStyles();
+  const addEntry = useStoreActions((state) => state.guestbook.addEntry);
 
   const GuestBookEntrySchema = yup.object().shape({
     name: yup.string().trim().required("A name is required."),
@@ -20,12 +22,15 @@ export const GuestBookEntryForm: React.FC = () => {
       .required(),
   });
 
-  const { register, handleSubmit, errors } = useForm<GuestBookEntry>({
+  const { register, handleSubmit, errors, reset } = useForm<GuestBookEntry>({
     validationSchema: GuestBookEntrySchema,
   });
 
   const onSubmit = (data: GuestBookEntry): void => {
-    console.log(data);
+    const modifiedData = { ...data };
+    modifiedData.submitted = new Date();
+    addEntry(modifiedData);
+    reset();
   };
 
   return (
