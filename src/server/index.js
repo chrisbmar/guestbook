@@ -24,5 +24,5 @@ server.listen(port, (err) => {
   if (err) {
     console.log(err);
   }
-  console.log(`JSON Server is running is running on port ${port}`);
+  console.log(`JSON Server is running on port ${port}`);
 });
