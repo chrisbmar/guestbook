@@ -12,7 +12,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
   if (req.method === "POST") {
-    req.body.submitted = new Date();
+    req.body.submitted = new Date().toLocaleDateString();
   }
   // Continue to JSON Server router
   next();

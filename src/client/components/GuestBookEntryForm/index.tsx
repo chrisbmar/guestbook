@@ -10,7 +10,7 @@ import { useStoreActions } from "../../hooks/index";
 
 export const GuestBookEntryForm: React.FC = () => {
   const classes = useStyles();
-  const addEntry = useStoreActions((state) => state.guestbook.addEntry);
+  const createEntry = useStoreActions((state) => state.guestbook.createEntry);
 
   const GuestBookEntrySchema = yup.object().shape({
     name: yup.string().trim().required("A name is required."),
@@ -27,9 +27,7 @@ export const GuestBookEntryForm: React.FC = () => {
   });
 
   const onSubmit = (data: GuestBookEntry): void => {
-    const modifiedData = { ...data };
-    modifiedData.submitted = new Date();
-    addEntry(modifiedData);
+    createEntry(data);
     reset();
   };
 
