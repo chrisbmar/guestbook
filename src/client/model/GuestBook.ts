@@ -1,16 +1,17 @@
-import { Action, action, Thunk, thunk } from "easy-peasy";
+import { Action, action, Thunk, thunk, computed, Computed } from "easy-peasy";
 
 // Single guest book entry
 export interface GuestBookEntry {
   name: string;
   content: string;
-  submitted: Date;
+  submitted: string;
   id: number;
 }
 
 // Array of guest book entries
 export interface GuestBookModel {
   entries: GuestBookEntry[];
+  reverseEntries: Computed<GuestBookModel, GuestBookEntry[]>;
   getEntries: Thunk<GuestBookModel>;
   setEntries: Action<GuestBookModel, GuestBookEntry[]>;
   createEntry: Thunk<GuestBookModel, GuestBookEntry>;
@@ -20,6 +21,7 @@ export interface GuestBookModel {
 // initial state
 const guestBookModel: GuestBookModel = {
   entries: [],
+  reverseEntries: computed((state) => state.entries.slice().reverse()),
   getEntries: thunk(async (state) => {
     const response = await fetch("http://localhost:4000/entries");
     const entries = await response.json();

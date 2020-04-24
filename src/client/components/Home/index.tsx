@@ -6,7 +6,7 @@ import useStyles from "./styles";
 
 export const Home: React.FC = () => {
   const classes = useStyles();
-  const entries = useStoreState((state) => state.guestbook.entries);
+  const entries = useStoreState((state) => state.guestbook.reverseEntries);
   const getEntries = useStoreActions((state) => state.guestbook.getEntries);
 
   useEffect(() => {
