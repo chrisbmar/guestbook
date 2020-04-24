@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
@@ -8,7 +9,21 @@ import { GuestBookEntry } from "../../model/GuestBook";
 
 export const GuestBookEntryForm: React.FC = () => {
   const classes = useStyles();
-  const { register, handleSubmit } = useForm<GuestBookEntry>();
+
+  const GuestBookEntrySchema = yup.object().shape({
+    name: yup.string().trim().required("A name is required."),
+    content: yup
+      .string()
+      .trim()
+      .min(10 /* second param will add custom error msg for this validation */)
+      .max(200)
+      .required(),
+  });
+
+  const { register, handleSubmit, errors } = useForm<GuestBookEntry>({
+    validationSchema: GuestBookEntrySchema,
+  });
+
   const onSubmit = (data: GuestBookEntry): void => {
     console.log(data);
   };
@@ -27,6 +42,8 @@ export const GuestBookEntryForm: React.FC = () => {
         fullWidth
         variant="outlined"
         inputRef={register}
+        error={!!errors.name}
+        helperText={errors.name && errors.name.message}
       />
       <TextField
         id="standard-basic"
@@ -37,6 +54,8 @@ export const GuestBookEntryForm: React.FC = () => {
         fullWidth
         variant="outlined"
         inputRef={register}
+        error={!!errors.content}
+        helperText={errors.content && errors.content.message}
       />
       <Box display="flex" justifyContent="flex-end">
         <Button type="submit" color="primary" variant="contained">
