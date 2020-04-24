@@ -1,11 +1,8 @@
 import { createStore } from "easy-peasy";
+import model, { StoreModel } from "../model/index";
 
-import Store from "../interfaces/Store";
-import GuestBook from "./GuestBook";
+// Creates the store using the StoreModel interface and the initial state
+// for the store is imported from the default storeModel export in "../model/index.ts"
+const store = createStore<StoreModel>(model);
 
-// Main wrapper, can have multiple stores inside the default state passed to create store
-const store: Store = {
-  guestbook: GuestBook,
-};
-
-export default createStore<Store>(store);
+export default store;
