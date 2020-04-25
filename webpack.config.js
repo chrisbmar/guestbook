@@ -61,6 +61,7 @@ module.exports = (env) => {
     ],
     devtool: "source-map",
     devServer: {
+      historyApiFallback: true,
       contentBase: "./dist",
       port: 3000,
       overlay: {
