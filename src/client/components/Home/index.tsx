@@ -1,22 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { GuestBookEntryForm } from "../GuestBookEntryForm";
-import { useStoreState, useStoreActions } from "../../hooks/index";
+import { GuestBookEntry } from "../../model/GuestBook";
 import useStyles from "./styles";
 
-export const Home: React.FC = () => {
-  const classes = useStyles();
-  const entries = useStoreState((state) => state.guestbook.reverseEntries);
-  const getEntries = useStoreActions((state) => state.guestbook.getEntries);
+interface HomeProps {
+  entries: GuestBookEntry[];
+  createEntry(data: GuestBookEntry): void;
+}
 
-  useEffect(() => {
-    getEntries();
-  }, []);
+export const Home: React.FC<HomeProps> = ({ entries, createEntry }) => {
+  const classes = useStyles();
 
   return (
     <div>
-      <GuestBookEntryForm />
-      {entries.map((entry) => (
+      <GuestBookEntryForm createEntry={createEntry} />
+      {entries?.map((entry) => (
         <Card className={classes.entryCard} key={entry.content}>
           <CardContent>
             <Typography variant="h2">{entry.name}</Typography>

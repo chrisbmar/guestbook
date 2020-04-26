@@ -6,11 +6,15 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import useStyles from "./styles";
 import { GuestBookEntry } from "../../model/GuestBook";
-import { useStoreActions } from "../../hooks/index";
 
-export const GuestBookEntryForm: React.FC = () => {
+interface GuestBookEntryFormProps {
+  createEntry(data: GuestBookEntry): void;
+}
+
+export const GuestBookEntryForm: React.FC<GuestBookEntryFormProps> = ({
+  createEntry,
+}) => {
   const classes = useStyles();
-  const createEntry = useStoreActions((state) => state.guestbook.createEntry);
 
   const GuestBookEntrySchema = yup.object().shape({
     name: yup.string().trim().required("A name is required."),
