@@ -16,7 +16,7 @@ export const Home: React.FC<HomeProps> = ({ entries, createEntry }) => {
     <div>
       <GuestBookEntryForm createEntry={createEntry} />
       {entries?.map((entry) => (
-        <Card className={classes.entryCard} key={entry.content}>
+        <Card className={classes.entryCard} key={entry.id}>
           <CardContent>
             <Typography variant="h2">{entry.name}</Typography>
             <Typography variant="body1">{entry.content}</Typography>
